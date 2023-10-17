@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+
+import { useEffect, useState } from 'react';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+
+  const [data, setData] = useState();
+  const [name, setName] = useState();
+  const [number, setNumber] = useState(1);
+
+URL = 'https://pokeapi.co/api/v2/pokemon/'+number+'/';
+  useEffect(() => {
+    axios.get(URL).then((res) => {
+      console.log(res.data);
+      setData(res.data);
+      setName(res.data.name);
+    }).catch((err) => {
+      console.log(err);
+    })
+
+  }, [URL]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1>Pokemon</h1>
+     <input type={"number"} onChange={(e)=>{setNumber(e.target.value)}}/>
+      <button>Show</button>
+      <h2>Name: {name}</h2>
+      <img src={data?data.sprites.other.dream_world.front_default:"<p>Loading</p>"} alt="pokemon" />
+      <p> My abilities: </p>      
+        {data ? data.abilities.map((value,key) => {
+          return (
+            <div key={key}>
+            {value.ability.name}
+            </div>
+          )
+          
+
+        }) : ""}
     </div>
   );
 }
