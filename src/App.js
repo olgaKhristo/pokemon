@@ -2,12 +2,18 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
+import ToDo from './components/ToDo';
+
+
 
 function App() {
 
   const [data, setData] = useState();
   const [name, setName] = useState();
   const [number, setNumber] = useState(1);
+ 
+ 
+
 
 URL = 'https://pokeapi.co/api/v2/pokemon/'+number+'/';
   useEffect(() => {
@@ -37,6 +43,9 @@ URL = 'https://pokeapi.co/api/v2/pokemon/'+number+'/';
           
 
         }) : ""}
+
+       <ToDo/>
+
     </div>
   );
 }
