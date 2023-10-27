@@ -28,7 +28,7 @@ URL = 'https://pokeapi.co/api/v2/pokemon/'+number+'/';
   }, [URL]);
   return (
     <div className="App">
-     <h1>Pokemon</h1>
+     <h1>Pokemon Love</h1>
      <input type={"number"} onChange={(e)=>{setNumber(e.target.value)}}/>
       <button>Show</button>
       <h2>Name: {name}</h2>
